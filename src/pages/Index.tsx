@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { id: "about",     label: "О площадке" },
   { id: "lab",       label: "Лаборатория" },
   { id: "projects",  label: "Проекты" },
-  { id: "timeline",  label: "Этапы" },
+  { id: "goals",     label: "Задачи" },
   { id: "team",      label: "Команда" },
   { id: "materials", label: "Материалы" },
   { id: "contacts",  label: "Контакты" },
@@ -155,36 +155,60 @@ const NEWS = [
 /* ─── Team ─── */
 const TEAM = [
   {
-    name: "Руководитель площадки",
-    role: "Директор ЦДЮТТ «Охта»",
-    quote: "Инновации начинаются с готовности меняться самому",
-    emoji: "👩‍💼",
+    name: "Иванова Наталья Леонидовна",
+    role: "к.т.н., директор ГБУ ДО ЦДЮТТ «Охта»",
     color: "from-purple-600 to-blue-600",
+    org: "ЦДЮТТ «Охта»",
     resp: ["Стратегическое руководство", "Взаимодействие с партнёрами", "Экспертиза результатов"],
   },
   {
-    name: "Методист-координатор",
-    role: "Главный методист",
-    quote: "Хорошо спроектированный урок — это произведение искусства",
-    emoji: "👩‍🏫",
+    name: "Ахтиева Гульнара Радиковна",
+    role: "Старший преподаватель кафедры педагогики и андрагогики СПб АППО",
     color: "from-blue-600 to-cyan-600",
-    resp: ["Координация методической работы", "Педагогическое проектирование", "Сопровождение педагогов"],
+    org: "СПб АППО",
+    resp: ["Научно-методическое сопровождение", "Андрагогика", "Педагогическое проектирование"],
   },
   {
-    name: "Педагог-инноватор",
-    role: "Старший педагог",
-    quote: "Каждый ребёнок — исследователь от природы",
-    emoji: "🧑‍💻",
-    color: "from-cyan-600 to-teal-600",
-    resp: ["Разработка программ", "Апробация инноваций", "Цифровые инструменты"],
+    name: "Щербова Татьяна Вадимовна",
+    role: "к.п.н., доцент кафедры педагогики и андрагогики СПб АППО",
+    color: "from-cyan-600 to-teal-500",
+    org: "СПб АППО",
+    resp: ["Научное руководство", "Педагогические исследования", "Методология"],
   },
   {
-    name: "Аналитик-исследователь",
-    role: "Методист по качеству",
-    quote: "Данные помогают видеть то, что интуиция пропускает",
-    emoji: "📊",
-    color: "from-violet-600 to-purple-600",
-    resp: ["Мониторинг качества", "Анализ результатов", "Отчётность и публикации"],
+    name: "Жебровская Ольга Олеговна",
+    role: "к.п.н., учитель ОАНО ШКОЛА УНИСОН, научный руководитель ЦДЮТТ «Охта»",
+    color: "from-teal-600 to-green-600",
+    org: "ШКОЛА УНИСОН / ЦДЮТТ «Охта»",
+    resp: ["Научное руководство площадки", "Исследовательская деятельность", "Работа с одарёнными детьми"],
+  },
+  {
+    name: "Ефимова Любовь Николаевна",
+    role: "Архитектор образовательной среды, заместитель директора по инновационной работе ЦДЮТТ «Охта»",
+    color: "from-indigo-600 to-purple-600",
+    org: "ЦДЮТТ «Охта»",
+    resp: ["Проектирование образовательной среды", "Инновационная деятельность", "Координация проектов"],
+  },
+  {
+    name: "Уханова Яна Александровна",
+    role: "Разработчик образовательных траекторий, методист ЦДЮТТ «Охта»",
+    color: "from-violet-600 to-blue-600",
+    org: "ЦДЮТТ «Охта»",
+    resp: ["Разработка образовательных траекторий", "Методическая работа", "Индивидуальные маршруты"],
+  },
+  {
+    name: "Герасимова Дарья Игоревна",
+    role: "Педагогический дизайнер, методист, педагог дополнительного образования ЦДЮТТ «Охта»",
+    color: "from-blue-600 to-indigo-600",
+    org: "ЦДЮТТ «Охта»",
+    resp: ["Педагогический дизайн", "Разработка контента", "Дополнительное образование"],
+  },
+  {
+    name: "Милашкина Анастасия Геннадьевна",
+    role: "Педагогический дизайнер, методист, педагог дополнительного образования ЦДЮТТ «Охта»",
+    color: "from-purple-600 to-pink-600",
+    org: "ЦДЮТТ «Охта»",
+    resp: ["Педагогический дизайн", "Методическое сопровождение", "Образовательные продукты"],
   },
 ];
 
@@ -247,6 +271,55 @@ function getAIAnswer(msg: string): string {
   if (m.includes("спасибо") || m.includes("благодар") || m.includes("отлично") || m.includes("помог"))
     return "Пожалуйста! Рад был помочь. Если возникнут ещё вопросы — всегда на связи. Успехов в педагогической деятельности! 🎓";
   return "Интересный вопрос! По этой теме рекомендую обратиться к методистам ЦДЮТТ «Охта» через форму «Контакты» — они дадут исчерпывающий ответ. Также посмотрите раздел «Материалы» — там есть методические рекомендации и полезные ресурсы.";
+}
+
+/* ═══════════ NORM DOCS ═══════════ */
+const NORM_DOCS = [
+  "Указ Президента РФ от 28.02.2024 № 145 «О Стратегии научно-технологического развития Российской Федерации»",
+  "Указ Президента РФ от 7 мая 2024 г. № 309 «О национальных целях развития Российской Федерации на период до 2030 года и на перспективу до 2036 года»",
+  "Распоряжение Правительства РФ от 18.10.2023 № 2894-р «Стратегическое направление в области цифровой трансформации образования»",
+  "Распоряжение Правительства РФ от 17 августа 2024 г. № 2233-р «Об утверждении Стратегии реализации молодёжной политики до 2030 г.»",
+  "Послание Президента Российской Федерации Федеральному Собранию от 29.02.2024 года",
+  "Национальные проекты «Молодёжь и дети», «Кадры», «Экономика данных и цифровая трансформация»",
+  "Концепция развития дополнительного образования детей до 2030 года",
+  "Распоряжение Комитета по образованию СПб от 08.07.22 № 1376-р «О проведении регионального мониторинга системы выявления, поддержки и развития способностей и талантов»",
+  "Концепция деятельности Санкт-Петербурга по выявлению, поддержке и развитию способностей и талантов у детей и молодёжи на период до 2030 года",
+];
+
+function NormDocs() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="rounded-2xl overflow-hidden" style={{ background: "hsl(240 12% 10%)", border: "1px solid rgba(124,58,237,0.15)" }}>
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="w-full flex items-center justify-between p-6 text-left group"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(124,58,237,0.2)" }}>
+            <Icon name="ScrollText" size={18} className="text-purple-400" />
+          </div>
+          <div>
+            <div className="font-oswald font-bold text-white text-lg">Нормативные документы</div>
+            <div className="text-xs" style={{ color: "#9ca3af" }}>{NORM_DOCS.length} документов · нажмите для раскрытия</div>
+          </div>
+        </div>
+        <Icon name={open ? "ChevronUp" : "ChevronDown"} size={20} className="text-purple-400 transition-transform" />
+      </button>
+      {open && (
+        <div className="px-6 pb-6 animate-fade-in">
+          <div className="h-px mb-5" style={{ background: "rgba(124,58,237,0.2)" }} />
+          <ol className="space-y-3">
+            {NORM_DOCS.map((doc, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm leading-relaxed" style={{ color: "#d1d5db" }}>
+                <span className="font-oswald font-bold shrink-0 text-base" style={{ color: "#a78bfa" }}>{i + 1}.</span>
+                {doc}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+    </div>
+  );
 }
 
 /* ═══════════ AI CHAT ═══════════ */
@@ -789,6 +862,149 @@ export default function Index() {
 
       <div className="section-divider" />
 
+      {/* ══════════ ЦЕЛИ / ЗАДАЧИ / РЕЗУЛЬТАТЫ ══════════ */}
+      <section id="goals" className="py-24 hero-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <div className="tag-badge inline-block mb-4">О Лаборатории</div>
+            <h2 className="font-oswald text-4xl md:text-5xl font-bold text-white mb-4">
+              Задачи, результаты <span className="gradient-text">и участники</span>
+            </h2>
+            <p style={{ color: "#9ca3af" }} className="max-w-3xl mx-auto">
+              Педагогический дизайн как инструмент сопровождения педагогов и одарённых детей при реализации
+              образовательного процесса и участия в конкурсном движении
+            </p>
+          </div>
+
+          {/* Основная идея */}
+          <div className="rounded-2xl p-8 mb-10" style={{ background: "linear-gradient(135deg,rgba(124,58,237,0.12),rgba(37,99,235,0.12))", border: "1px solid rgba(124,58,237,0.25)" }}>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg,#7c3aed,#2563eb)" }}>
+                <Icon name="Lightbulb" size={22} className="text-white" />
+              </div>
+              <div>
+                <h3 className="font-oswald text-xl font-bold text-white mb-2">Основная идея</h3>
+                <p className="leading-relaxed mb-3" style={{ color: "#d1d5db" }}>
+                  Лаборатория педагогического дизайна — это практико-ориентированная платформа, предназначенная для внедрения
+                  современных методик проектирования обучения на основе педагогического дизайна.
+                </p>
+                <p className="leading-relaxed" style={{ color: "#9ca3af" }}>
+                  Предоставляет педагогам и одарённым детям готовые инструменты и алгоритмы для создания качественного образовательного контента,
+                  разработки собственных образовательных решений и эффективной подготовки к конкурсным мероприятиям,
+                  переводя теоретические знания в плоскость реального применения.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Направления */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            {[
+              { icon: "Monitor",    label: "Инструкции по работе с цифровыми инструментами", color: "#7c3aed" },
+              { icon: "Users",      label: "Наставничество",                                  color: "#2563eb" },
+              { icon: "Zap",        label: "Гибкие навыки",                                   color: "#0891b2" },
+              { icon: "BookOpen",   label: "Образовательные решения",                         color: "#059669" },
+            ].map((d, i) => (
+              <div key={i} className="card-glow rounded-xl p-5 text-center">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3"
+                  style={{ background: `${d.color}25`, border: `1px solid ${d.color}40` }}>
+                  <Icon name={d.icon} size={22} style={{ color: d.color } as React.CSSProperties} fallback="Star" />
+                </div>
+                <p className="text-sm font-medium leading-tight" style={{ color: "#f3f4f6" }}>{d.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Задачи */}
+          <div className="grid lg:grid-cols-3 gap-6 mb-10">
+            {[
+              {
+                icon: "Target", title: "Задачи", color: "#7c3aed",
+                items: [
+                  "Разработка инструментов для разных этапов создания учебного контента",
+                  "Создание банка учебно-методических материалов по внедрению педагогического дизайна",
+                  "Совершенствование цифровых компетенций педагогических работников",
+                  "Создание образовательных продуктов и внедрение их в учебный и воспитательный процесс",
+                ],
+              },
+              {
+                icon: "Users", title: "Участники", color: "#2563eb",
+                items: [
+                  "Педагогические работники образовательных учреждений",
+                  "Одарённые дети",
+                ],
+              },
+              {
+                icon: "BarChart3", title: "Результаты для ОУ", color: "#059669",
+                items: [
+                  "Методическое сопровождение непрерывного повышения профмастерства через наставничество",
+                  "Дальнейшее развитие инновационного потенциала образовательных учреждений",
+                ],
+              },
+            ].map((block, i) => (
+              <div key={i} className="card-glow rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                    style={{ background: `${block.color}25`, border: `1px solid ${block.color}40` }}>
+                    <Icon name={block.icon} size={18} style={{ color: block.color } as React.CSSProperties} fallback="Star" />
+                  </div>
+                  <h3 className="font-oswald font-bold text-white text-lg">{block.title}</h3>
+                </div>
+                <ul className="space-y-2">
+                  {block.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm leading-relaxed" style={{ color: "#d1d5db" }}>
+                      <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: block.color }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Результаты для педагога и ребёнка */}
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
+            {[
+              {
+                emoji: "👩‍🏫", title: "Для педагога", color: "#7c3aed",
+                items: [
+                  "Повышение профессионального мастерства в области принципов и технологий педагогического дизайна",
+                  "Демонстрация возможностей включения инструментов педагогического дизайна в систему работы с одарёнными детьми",
+                ],
+              },
+              {
+                emoji: "🌟", title: "Для одарённого ребёнка", color: "#0891b2",
+                items: [
+                  "Создание условий для развития и реализации творческого потенциала при подготовке к конкурсам",
+                  "Активация учебно-познавательной деятельности",
+                  "Развитие гибких навыков и метапредметных компетенций",
+                ],
+              },
+            ].map((block, i) => (
+              <div key={i} className="card-glow rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="text-3xl">{block.emoji}</div>
+                  <h3 className="font-oswald font-bold text-white text-lg">{block.title}</h3>
+                </div>
+                <ul className="space-y-2">
+                  {block.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm leading-relaxed" style={{ color: "#d1d5db" }}>
+                      <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: block.color }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Нормативные документы — аккордеон */}
+          <NormDocs />
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
       {/* ══════════ TEAM ══════════ */}
       <section id="team" className="py-24" style={{ background: "hsl(240 12% 8%)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -805,27 +1021,25 @@ export default function Index() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
             {TEAM.map((m, i) => (
               <button key={i} onClick={() => setExpandedTeam(expandedTeam === i ? null : i)}
-                className="card-glow rounded-2xl p-6 text-left group transition-all duration-300"
+                className="card-glow rounded-2xl p-5 text-left group transition-all duration-300"
                 style={expandedTeam === i ? { border: "1px solid rgba(167,139,250,0.5)", boxShadow: "0 0 30px rgba(124,58,237,0.2)" } : {}}>
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-4 bg-gradient-to-br ${m.color}`}>
-                  {m.emoji}
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-gradient-to-br ${m.color}`}>
+                  <Icon name="User" size={22} className="text-white" />
                 </div>
-                <h3 className="font-oswald font-semibold text-white text-base mb-1 group-hover:text-purple-300 transition-colors">{m.name}</h3>
-                <div className="tag-badge inline-block mb-3">{m.role}</div>
+                <h3 className="font-oswald font-semibold text-white text-sm mb-1 group-hover:text-purple-300 transition-colors leading-tight">{m.name}</h3>
+                <div className="text-xs mb-2 leading-tight" style={{ color: "#9ca3af" }}>{m.role}</div>
+                <div className="tag-badge inline-block mb-2 text-xs" style={{ background: "rgba(37,99,235,0.1)", borderColor: "rgba(37,99,235,0.3)", color: "#93c5fd" }}>{m.org}</div>
                 {expandedTeam === i ? (
-                  <div className="animate-fade-in space-y-2">
-                    <p className="text-sm italic mb-3" style={{ color: "#c4b5fd" }}>«{m.quote}»</p>
-                    <div className="space-y-1">
-                      {m.resp.map((r, j) => (
-                        <div key={j} className="flex items-center gap-2 text-xs" style={{ color: "#d1d5db" }}>
-                          <div className="w-1 h-1 rounded-full bg-purple-400" />
-                          {r}
-                        </div>
-                      ))}
-                    </div>
+                  <div className="animate-fade-in space-y-1 mt-2">
+                    {m.resp.map((r, j) => (
+                      <div key={j} className="flex items-center gap-2 text-xs" style={{ color: "#d1d5db" }}>
+                        <div className="w-1 h-1 rounded-full bg-purple-400 shrink-0" />
+                        {r}
+                      </div>
+                    ))}
                   </div>
                 ) : (
-                  <p className="text-xs" style={{ color: "#6b7280" }}>Нажмите для подробностей</p>
+                  <p className="text-xs mt-1" style={{ color: "#6b7280" }}>Нажмите для подробностей</p>
                 )}
               </button>
             ))}
@@ -915,11 +1129,13 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="space-y-4">
               {[
-                { icon: "MapPin",    title: "Адрес",              value: "Санкт-Петербург, Красногвардейский район" },
-                { icon: "Building2", title: "Учреждение",          value: "ГБУ ДО ЦДЮТТ «Охта»" },
-                { icon: "Mail",     title: "Email",               value: "info@center-okhta.spb.ru" },
-                { icon: "Globe",    title: "Сайт учреждения",     value: "center-okhta.spb.ru" },
-                { icon: "ExternalLink", title: "Лаборатория (Tilda)", value: "ohta.tilda.ws" },
+                { icon: "Building2",   title: "Учреждение",          value: "ГБУ ДО ЦДЮТТ «Охта»" },
+                { icon: "MapPin",      title: "Адрес 1",             value: "ул. Панфилова, д. 23, лит. А, Санкт-Петербург" },
+                { icon: "MapPin",      title: "Адрес 2",             value: "пр. Энергетиков, д. 26, корп. 2, Санкт-Петербург" },
+                { icon: "Phone",       title: "Телефон",             value: "8 (812) 224-36-74" },
+                { icon: "Mail",        title: "Email",               value: "okhta@obr.gov.spb.ru" },
+                { icon: "Globe",       title: "Сайт учреждения",     value: "center-okhta.spb.ru" },
+                { icon: "ExternalLink", title: "Лаборатория",        value: "ohta.tilda.ws/labpeddisign" },
               ].map((c, i) => (
                 <div key={i} className="card-glow rounded-xl p-4 flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
