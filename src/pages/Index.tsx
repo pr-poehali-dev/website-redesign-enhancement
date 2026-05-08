@@ -506,6 +506,36 @@ export default function Index() {
         </div>
       </section>
 
+      {/* ══════════ ВИДЕО ══════════ */}
+      <section id="video" className="py-20" style={{ background: "hsl(240 12% 8%)" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <div className="tag-badge inline-flex items-center gap-1.5 mb-4">
+              <Icon name="Play" size={12} />
+              Видеообзор
+            </div>
+            <h2 className="font-oswald text-4xl md:text-5xl font-bold text-white mb-3">
+              Посмотрите на <span className="gradient-text">ЦДЮТТ «Охта»</span>
+            </h2>
+            <p style={{ color: "#9ca3af" }}>Обзор центра — пространство, где рождаются инновации в образовании</p>
+          </div>
+          <div className="relative rounded-2xl overflow-hidden animate-float"
+            style={{ boxShadow: "0 0 60px rgba(124,58,237,0.25)", border: "1px solid rgba(124,58,237,0.2)", aspectRatio: "16/9" }}>
+            <iframe
+              src="https://vkvideo.ru/video_ext.php?oid=-186027058&id=456239117&hd=2&autoplay=0"
+              width="100%"
+              height="100%"
+              className="absolute inset-0 w-full h-full"
+              allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+              frameBorder="0"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
       {/* ══════════ ЛАБОРАТОРИЯ ══════════ */}
       <section id="lab" className="py-24" style={{ background: "hsl(240 12% 8%)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
