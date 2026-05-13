@@ -152,6 +152,49 @@ const NEWS = [
   },
 ];
 
+/* ─── Team photos (row1: 4 left-to-right, row2: 4 left-to-right from screenshot) ─── */
+const TEAM_IMG_SRC = "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg";
+
+/* Crop coordinates as percentage [x%, y%, w%, h%] within the source image (1263×833px) */
+const TEAM_CROPS: [number, number, number, number][] = [
+  [0,    0,   25, 55],  // 0 Иванова
+  [25,   0,   25, 55],  // 1 Ахтиева
+  [50,   0,   25, 55],  // 2 Щербова
+  [75,   0,   25, 55],  // 3 Жебровская
+  [0,   50,   25, 50],  // 4 Ефимова
+  [25,  50,   25, 50],  // 5 Уханова
+  [50,  50,   25, 50],  // 6 Гончаров (заглушка — нет фото)
+  [75,  50,   25, 50],  // 7 Милашкина
+];
+
+function TeamAvatar({ idx, name, color }: { idx: number; name: string; color: string }) {
+  const [err, setErr] = React.useState(false);
+  const [x, y, w, h] = TEAM_CROPS[idx];
+  if (err) {
+    return (
+      <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-3 bg-gradient-to-br ${color}`}>
+        <Icon name="User" size={30} className="text-white" />
+      </div>
+    );
+  }
+  return (
+    <div className="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden shrink-0"
+      style={{ border: "2px solid rgba(167,139,250,0.4)" }}>
+      <div style={{
+        width: `${100 / (w / 100)}%`,
+        height: `${100 / (h / 100)}%`,
+        backgroundImage: `url(${TEAM_IMG_SRC})`,
+        backgroundSize: "400% auto",
+        backgroundPosition: `${(x / (100 - w)) * 100}% ${(y / (100 - h)) * 100}%`,
+        transform: `scale(${100 / (w / 100) / 100})`,
+        transformOrigin: `${(x / (100 - w)) * 100}% ${(y / (100 - h)) * 100}%`,
+      }}
+        onError={() => setErr(true)}
+      />
+    </div>
+  );
+}
+
 /* ─── Team ─── */
 const TEAM = [
   {
@@ -160,6 +203,8 @@ const TEAM = [
     color: "from-purple-600 to-blue-600",
     org: "ЦДЮТТ «Охта»",
     resp: ["Стратегическое руководство", "Взаимодействие с партнёрами", "Экспертиза результатов"],
+    photo: "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg",
+    photoCrop: { x: "12%", y: "5%", size: "400%" },
   },
   {
     name: "Ахтиева Гульнара Радиковна",
@@ -167,6 +212,8 @@ const TEAM = [
     color: "from-blue-600 to-cyan-600",
     org: "СПб АППО",
     resp: ["Научно-методическое сопровождение", "Андрагогика", "Педагогическое проектирование"],
+    photo: "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg",
+    photoCrop: { x: "37%", y: "5%", size: "400%" },
   },
   {
     name: "Щербова Татьяна Вадимовна",
@@ -174,6 +221,8 @@ const TEAM = [
     color: "from-cyan-600 to-teal-500",
     org: "СПб АППО",
     resp: ["Научное руководство", "Педагогические исследования", "Методология"],
+    photo: "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg",
+    photoCrop: { x: "62%", y: "5%", size: "400%" },
   },
   {
     name: "Жебровская Ольга Олеговна",
@@ -181,6 +230,8 @@ const TEAM = [
     color: "from-teal-600 to-green-600",
     org: "ШКОЛА УНИСОН / ЦДЮТТ «Охта»",
     resp: ["Научное руководство площадки", "Исследовательская деятельность", "Работа с одарёнными детьми"],
+    photo: "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg",
+    photoCrop: { x: "87%", y: "5%", size: "400%" },
   },
   {
     name: "Ефимова Любовь Николаевна",
@@ -188,6 +239,8 @@ const TEAM = [
     color: "from-indigo-600 to-purple-600",
     org: "ЦДЮТТ «Охта»",
     resp: ["Проектирование образовательной среды", "Инновационная деятельность", "Координация проектов"],
+    photo: "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg",
+    photoCrop: { x: "12%", y: "72%", size: "400%" },
   },
   {
     name: "Уханова Яна Александровна",
@@ -195,13 +248,17 @@ const TEAM = [
     color: "from-violet-600 to-blue-600",
     org: "ЦДЮТТ «Охта»",
     resp: ["Разработка образовательных траекторий", "Методическая работа", "Индивидуальные маршруты"],
+    photo: "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg",
+    photoCrop: { x: "37%", y: "72%", size: "400%" },
   },
   {
-    name: "Герасимова Дарья Игоревна",
-    role: "Педагогический дизайнер, методист, педагог дополнительного образования ЦДЮТТ «Охта»",
+    name: "Гончаров Дмитрий Алексеевич",
+    role: "Методист ЦДЮТТ «Охта»",
     color: "from-blue-600 to-indigo-600",
     org: "ЦДЮТТ «Охта»",
-    resp: ["Педагогический дизайн", "Разработка контента", "Дополнительное образование"],
+    resp: ["Методическая работа", "Разработка контента", "Сопровождение педагогов"],
+    photo: null,
+    photoCrop: null,
   },
   {
     name: "Милашкина Анастасия Геннадьевна",
@@ -209,6 +266,8 @@ const TEAM = [
     color: "from-purple-600 to-pink-600",
     org: "ЦДЮТТ «Охта»",
     resp: ["Педагогический дизайн", "Методическое сопровождение", "Образовательные продукты"],
+    photo: "https://cdn.poehali.dev/projects/1c015a27-63aa-4d64-8203-0abbad0db560/bucket/852ba425-47b8-4b78-bf23-becc267ae705.jpg",
+    photoCrop: { x: "87%", y: "72%", size: "400%" },
   },
 ];
 
@@ -1021,16 +1080,30 @@ export default function Index() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
             {TEAM.map((m, i) => (
               <button key={i} onClick={() => setExpandedTeam(expandedTeam === i ? null : i)}
-                className="card-glow rounded-2xl p-5 text-left group transition-all duration-300"
+                className="card-glow rounded-2xl p-5 text-center group transition-all duration-300"
                 style={expandedTeam === i ? { border: "1px solid rgba(167,139,250,0.5)", boxShadow: "0 0 30px rgba(124,58,237,0.2)" } : {}}>
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-gradient-to-br ${m.color}`}>
-                  <Icon name="User" size={22} className="text-white" />
-                </div>
+                {m.photo && m.photoCrop ? (
+                  <div className="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden shrink-0"
+                    style={{ border: "2px solid rgba(167,139,250,0.4)" }}>
+                    <div style={{
+                      width: "100%",
+                      height: "100%",
+                      backgroundImage: `url(${m.photo})`,
+                      backgroundSize: m.photoCrop.size,
+                      backgroundPosition: `${m.photoCrop.x} ${m.photoCrop.y}`,
+                      backgroundRepeat: "no-repeat",
+                    }} />
+                  </div>
+                ) : (
+                  <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-3 bg-gradient-to-br ${m.color}`}>
+                    <Icon name="User" size={30} className="text-white" />
+                  </div>
+                )}
                 <h3 className="font-oswald font-semibold text-white text-sm mb-1 group-hover:text-purple-300 transition-colors leading-tight">{m.name}</h3>
                 <div className="text-xs mb-2 leading-tight" style={{ color: "#9ca3af" }}>{m.role}</div>
                 <div className="tag-badge inline-block mb-2 text-xs" style={{ background: "rgba(37,99,235,0.1)", borderColor: "rgba(37,99,235,0.3)", color: "#93c5fd" }}>{m.org}</div>
                 {expandedTeam === i ? (
-                  <div className="animate-fade-in space-y-1 mt-2">
+                  <div className="animate-fade-in space-y-1 mt-2 text-left">
                     {m.resp.map((r, j) => (
                       <div key={j} className="flex items-center gap-2 text-xs" style={{ color: "#d1d5db" }}>
                         <div className="w-1 h-1 rounded-full bg-purple-400 shrink-0" />
